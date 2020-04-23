@@ -20,8 +20,12 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
+
 - task: AndroidSigning@3
   inputs:
     apkFiles: '**/*.apk'
-    apksign: false
-    zipalign: false
+    apksignerKeystoreFile: 'production.jks'
+    apksignerKeystorePassword: 'keystorepwd'
+    apksignerKeystoreAlias: 'key0'
+    apksignerKeyPassword: 'aliaspwd'
+    apksignerFile: '--out $(Build.SourcesDirectory)/app/build/outputs/apk/release/android-devops'
